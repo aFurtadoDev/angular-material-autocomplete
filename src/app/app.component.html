@@ -1,4 +1,67 @@
 <hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<p>Start editing to see some magic happen :)</p>
+
+<form class="example-form">
+  <mat-form-field class="example-full-width">
+    <input
+      type="text"
+      placeholder="Pais"
+      aria-label="Number"
+      matInput
+      [formControl]="country"
+      [matAutocomplete]="countryAuto"
+    />
+    <mat-autocomplete
+      #countryAuto="matAutocomplete"
+      [displayWith]="displayCountryFn"
+    >
+      <mat-option
+        *ngFor="let option of filteredCountryOptions | async"
+        [value]="option"
+      >
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      type="text"
+      placeholder="Estado"
+      aria-label="Number"
+      matInput
+      [formControl]="state"
+      [matAutocomplete]="stateAuto"
+    />
+    <mat-autocomplete
+      #stateAuto="matAutocomplete"
+      [displayWith]="displayStateFn"
+    >
+      <mat-option
+        *ngFor="let option of filteredStateOptions | async"
+        [value]="option"
+      >
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width">
+    <input
+      type="text"
+      placeholder="Cidade"
+      aria-label="Number"
+      matInput
+      [formControl]="city"
+      [matAutocomplete]="cityAuto"
+    />
+    <mat-autocomplete #cityAuto="matAutocomplete" [displayWith]="displayCityFn">
+      <mat-option
+        *ngFor="let option of filteredCityOptions | async"
+        [value]="option"
+      >
+        {{ option.name }}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
